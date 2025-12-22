@@ -13,5 +13,10 @@ class Produk extends Model implements \Spatie\MediaLibrary\HasMedia
     public function kategoris()
     {
         return $this->belongsToMany(Kategori::class, 'produk_kategoris', 'produk_id', 'kategori_id');
+
+    }
+    public function tags()
+    {
+        return $this->belongsToMany(Tags::class, 'produk_tags', 'produk_id', 'tags_id');
     }
 }

@@ -42,6 +42,10 @@ class ProdukResource extends Resource
                     ->required()
                     ->numeric()
                     ->prefix('Rp'),
+                forms\Components\Select::make('tags')
+                    ->label('Tags')
+                    ->relationship('tags', 'namatags')
+                    ->preload(),
                 
                 Forms\Components\Select::make('kategoris')
                     ->label('Kategori')
@@ -85,6 +89,9 @@ class ProdukResource extends Resource
                     ->money('idr', true)
                     
                     ->sortable(),
+                Tables\Columns\TextColumn::make('tags.namatags')
+                    ->badge()
+                    ->color('primary'),
                 Tables\Columns\TextColumn::make('kategoris.nama_kategori')
                     ->badge()
                     ->color('success'),
