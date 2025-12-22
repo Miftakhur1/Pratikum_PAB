@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ProdukResource\Pages;
 use App\Filament\Resources\ProdukResource\RelationManagers;
 use App\Models\Produk;
+
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -41,10 +42,24 @@ class ProdukResource extends Resource
                     ->required()
                     ->numeric()
                     ->prefix('Rp'),
+                
+                Forms\Components\Select::make('kategoris')
+                    ->label('Kategori')
+                    ->multiple()
+                    ->relationship('kategoris', 'nama_kategori')
+                    ->preload(),
                 Forms\Components\SpatieMediaLibraryFileUpload::make('gambar')
                     ->image()
                     ->required()
                     ->collection('gambar'),
+                    Forms\Components\Textarea::make('produk_deskripsi_short')
+                    ->required()
+                    ->label('Deskripsi Singkat')
+                    ->maxLength(255),
+                Forms\Components\RichEditor::make('produk_deskripsi_long')
+                   ->required()
+                     ->label('Deskripsi Lengkap')
+                    ->columnSpanFull(),
             ]);
     }
 
@@ -70,6 +85,13 @@ class ProdukResource extends Resource
                     ->money('idr', true)
                     
                     ->sortable(),
+                Tables\Columns\TextColumn::make('kategoris.nama_kategori')
+                    ->badge()
+                    ->color('success'),
+                tables\Columns\TextColumn::make('produk_deskripsi_short')
+                    ->limit(30),
+                // tables\Columns\TextColumn::make('produk_deskripsi_long')
+                //     ->limit(100),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
