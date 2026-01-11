@@ -1,6 +1,0 @@
-[php]
-extensions = [
-  "intl",
-  "zip",
-  "exif"
-]
