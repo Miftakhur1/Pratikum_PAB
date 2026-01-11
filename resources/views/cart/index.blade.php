@@ -31,7 +31,14 @@
                                     <div class="flex-1">
                                         <h3 class="text-lg font-semibold text-gray-900 mb-2">{{ $item['namabarang'] }}</h3>
                                         <p class="text-gray-600 mb-2">Rp. {{ number_format($item['price'], 0, ',', '.') }}</p>
-                                        <p class="text-sm text-gray-500">Jumlah: 1</p>
+                                        
+                                        {{-- Mengambil jumlah dari data item di cart --}}
+                                        <p class="text-sm text-gray-500">Jumlah: {{ $item['quantity'] }}</p>
+                                        
+                                        {{-- Opsional: Menambahkan Subtotal per item --}}
+                                        <p class="text-sm font-medium text-purple-700 mt-1">
+                                            Subtotal: Rp. {{ number_format($item['price'] * $item['quantity'], 0, ',', '.') }}
+                                        </p>
                                     </div>
                                     
                                     <div class="flex items-center gap-4">

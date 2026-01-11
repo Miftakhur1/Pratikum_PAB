@@ -22,4 +22,13 @@ class ProdukController extends Controller
         // Data $produk tersedia di view dengan nama variabel yang sama: $produk
         return view('produk.detail', compact('produk'));
     }
+    
+    public function index()
+    {
+        // Mengambil semua data dari database
+        $produks = \App\Models\Produk::all(); 
+
+        // Mengirim variabel ke view
+        return view('produk.index', compact('produks')); 
+    }
 }

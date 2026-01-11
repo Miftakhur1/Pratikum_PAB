@@ -18,3 +18,11 @@ Route::post('/cart/clear', [\App\Http\Controllers\CartController::class, 'clear'
 Route::get('/checkout', [\App\Http\Controllers\OrderController::class, 'checkout'])->name('order.checkout');
 Route::post('/order', [\App\Http\Controllers\OrderController::class, 'store'])->name('order.store');
 Route::get('/order/success/{id}', [\App\Http\Controllers\OrderController::class, 'success'])->name('order.success');
+
+
+
+Route::get('/about', function () {
+    return view('about.about');
+})->name('about');
+
+Route::get('/product', [ProdukController::class, 'index'])->name('product');
