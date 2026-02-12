@@ -4,7 +4,7 @@
 
 <section class="relative bg-white overflow-hidden">
     <!-- Background blur -->
-    <div class="absolute -top-24 -left-24 w-[500px] h-[500px] bg-purple-100 rounded-full blur-3xl opacity-50"></div>
+    <div class="absolute inset-0 -z-10 bg-gradient-to-tr from-purple-50 to-indigo-50 opacity-70 blur-3xl"></div>
 
     <div class="container mx-auto px-5 py-24 relative z-10">
         @if($produkUnggulan)
@@ -19,6 +19,7 @@
                     alt="{{ $produkUnggulan->namabarang }}"
                     class="relative w-72 md:w-80 rounded-2xl shadow-2xl object-cover transition-transform duration-500 group-hover:scale-105"
                 >
+
             </div>
 
             <!-- CONTENT -->
@@ -65,10 +66,18 @@
 
                     <button
                         type="submit"
-                        class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 px-12 rounded-full shadow-lg hover:shadow-purple-300 transition-all duration-300 hover:-translate-y-1 text-m"
+                        class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-full text-sm"
                     >
                         Tambah ke Keranjang
                     </button>
+                    <!-- whatsapp -->
+                    <a
+                            href="https://wa.me/6289512848205?text=Saya%20tertarik%20dengan%20produk%20{{ urlencode($produkUnggulan->namabarang) }}"
+                            target="_blank"
+                            class="ml-4 inline-block bg-green-400 hover:bg-green-500 text-white font-bold py-3 px-6 rounded-full text-sm"
+                        >
+                            Chat via WhatsApp
+                    </a>
                 </form>
             </div>
 
@@ -89,12 +98,12 @@
     <div class="container px-5 mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
             @foreach ($produks as $index => $produk)
-            <div class="flex flex-col items-center group bg-gray-50 rounded-3xl p-6 transition-all hover:bg-white hover:shadow-2xl border border-transparent hover:border-purple-100">
+            <div class="flex flex-col items-center group bg-gray-50 rounded-3xl p-6 transition-all hover:bg-white hover:shadow-xl border border-transparent hover:border-purple-100">
                 
                 <div class="w-full h-72 mb-6 overflow-hidden rounded-2xl relative">
                     <img src="{{ $produk->getFirstMediaUrl('gambar') }}"
                          alt="gambar produk"
-                         class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700">
+                         class="w-full h-full object-cover ">
                     
                     <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-xl shadow-lg">
                         <span class="text-purple-700 font-bold">Rp {{ number_format($produk->price, 0, ',', '.') }}</span>

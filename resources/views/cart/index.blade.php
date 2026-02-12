@@ -2,7 +2,7 @@
 @section('content')
 <section class="text-gray-600 body-font">
     <div class="container px-5 py-24 mx-auto">
-        <h1 class="text-3xl font-bold text-gray-900 mb-8">Keranjang Belanja</h1>
+        <h1 class="text-3xl font-bold text-center text-gray-900 mb-8">Keranjang Belanja</h1>
         
         @if(session('success'))
             <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4" role="alert">
@@ -87,7 +87,7 @@
                             </div>
                         </div>
                         
-                        <a href="{{ route('home') }}" class="block text-center text-indigo-500 hover:text-indigo-700 mb-4">Lanjut Belanja</a>
+                        <a href="{{ route('product') }}" class="block text-center text-indigo-500 hover:text-indigo-700 mb-4">Lanjut Belanja</a>
                         
                         <a href="{{route('order.checkout')}}" class="block w-full bg-indigo-500 text-white py-3 px-6 rounded-lg hover:bg-indigo-600 font-medium text-center">
                             Checkout
@@ -102,7 +102,7 @@
                 </svg>
                 <h2 class="text-2xl font-bold text-gray-900 mt-4 mb-2">Keranjang Anda Kosong</h2>
                 <p class="text-gray-600 mb-6">Mulai belanja dan tambahkan produk ke keranjang Anda</p>
-                <a href="{{ route('home') }}" class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+                <a href="{{ route('product') }}" class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
                     Mulai Belanja
                 </a>
             </div>
