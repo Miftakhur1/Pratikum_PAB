@@ -26,7 +26,7 @@
                     <!-- IMAGE -->
                     <div class="relative overflow-hidden aspect-square">
                         <img
-                            src="{{ $produk->getFirstMediaUrl('gambar') }}"
+                            src="{{ str_replace('http://', 'https://', $produk->getFirstMediaUrl('gambar')) }}"
                             alt="{{ $produk->namabarang }}"
                             class="w-full h-full object-cover transition duration-500 group-hover:scale-110"
                         >

@@ -26,15 +26,17 @@ RUN mkdir -p storage bootstrap/cache \
     && chmod -R 775 storage bootstrap/cache \
     && chown -R www-data:www-data /app 
 
-# 8. Buat link untuk storage agar gambar bisa muncul
-RUN php artisan storage:link
+# 8. Buat link untuk storage (Wajib agar gambar tidak 404)
+# Kita tambahkan --force agar tidak error jika link sudah ada
+RUN php artisan storage:link --force
 
 # 9. Port & Running
 EXPOSE 10000
 ENV PORT=10000
 
-# 10. Clear cache & Jalankan server
-CMD php artisan config:clear && \
-    php artisan route:clear && \
+# 10. Jalankan Migrasi & Server
+CMD php artisan migrate --force && \
+    php artisan config:clear && \
     php artisan view:clear && \
+    php artisan route:clear && \
     php artisan serve --host=0.0.0.0 --port=10000

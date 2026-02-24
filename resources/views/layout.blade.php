@@ -17,13 +17,9 @@
     <!-- STYLES & SCRIPTS -->
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @else
-        {{-- Fallback Tailwind (hasil build) --}}
-        <style>
-            /*! tailwindcss v4.0.7 | MIT License | https://tailwindcss.com */
-            /* (dipersingkat – isinya tetap sama seperti milikmu) */
-        </style>
     @endif
+    
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="min-h-screen flex flex-col">

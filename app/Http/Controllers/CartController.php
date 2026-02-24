@@ -43,7 +43,7 @@ class CartController extends Controller
                 'namabarang' => $produk->namabarang,
                 'price' => $produk->price,
                 'quantity' => 1,
-                'image' => $produk->getFirstMediaUrl('gambar'),
+                'image' => str_replace('http://', 'https://', $produk->getFirstMediaUrl('gambar')),
             ];
         }
 

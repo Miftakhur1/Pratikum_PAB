@@ -101,7 +101,7 @@
             <div class="flex flex-col items-center group bg-gray-50 rounded-3xl p-6 transition-all hover:bg-white hover:shadow-xl border border-transparent hover:border-purple-100">
                 
                 <div class="w-full h-72 mb-6 overflow-hidden rounded-2xl relative">
-                    <img src="{{ $produk->getFirstMediaUrl('gambar') }}"
+                    <img src="{{ str_replace('http://', 'https://', str_replace('http://', 'https://', $produk->getFirstMediaUrl('gambar'))) }}"
                          alt="gambar produk"
                          class="w-full h-full object-cover ">
                     
