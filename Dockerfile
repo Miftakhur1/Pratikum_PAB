@@ -24,7 +24,7 @@ RUN composer install --no-interaction --prefer-dist --optimize-autoloader --no-d
 # 7. Atur izin folder & Optimasi Laravel (Sangat Penting untuk kecepatan)
 RUN mkdir -p storage bootstrap/cache \
     && chmod -R 775 storage bootstrap/cache \
-    && chown -R www-data:www-data /app \
+    && chown -R www-data:www-data /app 
 
 # 8. Buat link untuk storage agar gambar bisa muncul
 RUN php artisan storage:link
