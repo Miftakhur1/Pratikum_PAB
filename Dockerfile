@@ -25,9 +25,6 @@ RUN composer install --no-interaction --prefer-dist --optimize-autoloader --no-d
 RUN mkdir -p storage bootstrap/cache \
     && chmod -R 775 storage bootstrap/cache \
     && chown -R www-data:www-data /app \
-    && php artisan config:cache \
-    && php artisan route:cache \
-    && php artisan view:cache
 
 # 8. Buat link untuk storage agar gambar bisa muncul
 RUN php artisan storage:link
@@ -36,5 +33,8 @@ RUN php artisan storage:link
 EXPOSE 10000
 ENV PORT=10000
 
-# Gunakan flag --no-reload agar lebih stabil di production
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=10000", "--no-reload"]
+# 10. Clear cache & Jalankan server
+CMD php artisan config:clear && \
+    php artisan route:clear && \
+    php artisan view:clear && \
+    php artisan serve --host=0.0.0.0 --port=10000
