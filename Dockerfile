@@ -21,11 +21,12 @@ RUN dos2unix artisan && chmod +x artisan
 # 6. Install PHP dependencies (Optimized)
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
 
-# 7. Atur izin folder secara brutal agar bisa upload
+# 7. Atur izin folder secara brutal dan buat folder temporary upload
 RUN mkdir -p storage/app/public/images \
     && mkdir -p storage/framework/cache \
     && mkdir -p storage/framework/sessions \
     && mkdir -p storage/framework/views \
+    && mkdir -p storage/app/livewire-tmp \
     && chmod -R 777 storage bootstrap/cache \
     && chown -R www-data:www-data /app
 
@@ -39,7 +40,8 @@ ENV PORT=10000
 
 # 10. Jalankan Migrasi & Server
 CMD php artisan migrate --force && \
+    php artisan storage:link --force && \
     php artisan config:clear && \
     php artisan view:clear && \
     php artisan route:clear && \
-    php artisan serve --host=0.0.0.0 --port=10000
+    exec frankenphp php-server --listen :10000

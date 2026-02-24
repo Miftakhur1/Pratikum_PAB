@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\URL;
+use Filament\Support\Facades\FilamentAsset;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,11 +21,12 @@ class AppServiceProvider extends ServiceProvider
      */
    public function boot(): void
     {
-        \Illuminate\Support\Facades\URL::forceScheme('https');
-
-        // Tambahkan ini juga untuk menangani upload via Proxy Render
+        // 1. Paksa semua URL (termasuk CSS/JS) pakai HTTPS
         if (config('app.env') !== 'local') {
-            \Illuminate\Support\Facades\URL::forceRootUrl(config('app.url'));
+            URL::forceScheme('https');
         }
+
+        // 2. Beritahu Filament agar selalu pakai HTTPS untuk asetnya
+        FilamentAsset::register([]); 
     }
 }
