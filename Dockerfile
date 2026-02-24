@@ -27,9 +27,9 @@ RUN mkdir -p storage bootstrap/cache \
     && chmod -R 775 storage bootstrap/cache \
     && chown -R www-data:www-data /app
 
-# 8. Port & Running
-EXPOSE 10000
-ENV PORT=10000
+# 8. Port & Running (Ganti ke 80)
+EXPOSE 80
+ENV PORT=80
 
-# Jalankan langsung dari folder /app
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=10000"]
+# Jalankan artisan serve di port 80
+CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=80"]

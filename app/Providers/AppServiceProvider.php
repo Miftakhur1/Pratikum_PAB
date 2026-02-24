@@ -17,8 +17,11 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
+   public function boot(): void
     {
-        //
+        // Tambahkan ini agar semua link di web kamu otomatis jadi HTTPS saat di Render
+        if (config('app.env') !== 'local') {
+            \URL::forceScheme('https');
+        }
     }
 }
