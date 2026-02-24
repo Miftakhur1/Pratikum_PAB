@@ -38,8 +38,10 @@ RUN php artisan storage:link --force
 EXPOSE 10000
 ENV PORT=10000
 
-# 10. Jalankan Migrasi & Server
+# 10. Jalankan Migrasi & Server (Cara paling aman untuk Render)
 CMD php artisan migrate --force && \
     php artisan storage:link --force && \
     php artisan config:clear && \
-    frankenphp php-server --listen :10000
+    php artisan view:clear && \
+    php artisan route:clear && \
+    php artisan serve --host=0.0.0.0 --port=10000
