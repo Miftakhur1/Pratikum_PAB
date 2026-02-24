@@ -42,6 +42,4 @@ ENV PORT=10000
 CMD php artisan migrate --force && \
     php artisan storage:link --force && \
     php artisan config:clear && \
-    php artisan view:clear && \
-    php artisan route:clear && \
-    exec frankenphp php-server --listen :10000
+    frankenphp php-server --listen :10000
