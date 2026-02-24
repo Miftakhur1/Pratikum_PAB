@@ -19,9 +19,11 @@ class AppServiceProvider extends ServiceProvider
      */
    public function boot(): void
     {
-        // Tambahkan ini agar semua link di web kamu otomatis jadi HTTPS saat di Render
+        \Illuminate\Support\Facades\URL::forceScheme('https');
+
+        // Tambahkan ini juga untuk menangani upload via Proxy Render
         if (config('app.env') !== 'local') {
-            \URL::forceScheme('https');
+            \Illuminate\Support\Facades\URL::forceRootUrl(config('app.url'));
         }
     }
 }

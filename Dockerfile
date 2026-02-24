@@ -21,10 +21,13 @@ RUN dos2unix artisan && chmod +x artisan
 # 6. Install PHP dependencies (Optimized)
 RUN composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
 
-# 7. Atur izin folder & Optimasi Laravel (Sangat Penting untuk kecepatan)
-RUN mkdir -p storage bootstrap/cache \
-    && chmod -R 775 storage bootstrap/cache \
-    && chown -R www-data:www-data /app 
+# 7. Atur izin folder secara brutal agar bisa upload
+RUN mkdir -p storage/app/public/images \
+    && mkdir -p storage/framework/cache \
+    && mkdir -p storage/framework/sessions \
+    && mkdir -p storage/framework/views \
+    && chmod -R 777 storage bootstrap/cache \
+    && chown -R www-data:www-data /app
 
 # 8. Buat link untuk storage (Wajib agar gambar tidak 404)
 # Kita tambahkan --force agar tidak error jika link sudah ada
